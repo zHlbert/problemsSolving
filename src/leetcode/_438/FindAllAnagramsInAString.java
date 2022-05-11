@@ -45,7 +45,7 @@ public class FindAllAnagramsInAString {
 
     public static void main(String[] args) {
         FindAllAnagramsInAString faa = new FindAllAnagramsInAString();
-        String s = "abab";
+        String s = "acbab";
         String p = "ab";
         System.out.println(faa.findAnagrams(s, p));
     }
