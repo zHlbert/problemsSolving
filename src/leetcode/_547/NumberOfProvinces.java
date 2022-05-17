@@ -1,5 +1,10 @@
 package leetcode._547;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * https://leetcode.cn/problems/number-of-provinces/
  */
@@ -31,6 +36,30 @@ public class NumberOfProvinces {
                 dfs(j);
             }
         }
+    }
+
+    public int findCircleNumBFS(int[][] isConnected) {
+        int n = isConnected.length;
+        boolean[] visited = new boolean[n];
+        int provinces = 0;
+        Deque<Integer> queue = new ArrayDeque<>(n);
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                queue.offer(i);
+                while (!queue.isEmpty()) {
+                    int j = queue.poll();
+                    visited[j] = true;
+                    for (int k = 0; k < n; k++) {
+                        if (isConnected[j][k] == 1 && !visited[k]) {
+                            visited[k] = true;
+                            queue.offer(k);
+                        }
+                    }
+                }
+                provinces++;
+            }
+        }
+        return provinces;
     }
 
     public static void main(String[] args) {
