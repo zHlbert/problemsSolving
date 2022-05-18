@@ -54,6 +54,7 @@ public class MaximumValueOfKCoinsFromPiles {
             // 遍历背包容量
             for (int j = 1; j <= k; j++) {
                 int minV = Math.min(n, j);
+                // 遍历第i组的物品
                 for (int m = 0; m <= minV; m++) {
                     // 参考分组背包的技巧,每次抉择范围为选第i组的哪个物品?其中包含一种特殊情况(m=0代表不选->dp[i-1][j])
                     // dp[i][j]=max(dp[i][j],dp[i-1][j-v[i][m]]+w[i][m]),m∈[0,pile.size()]
