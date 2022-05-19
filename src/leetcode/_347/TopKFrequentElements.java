@@ -32,6 +32,26 @@ public class TopKFrequentElements {
         return res;
     }
 
+    public int[] topKFrequentMinHeap(int[] nums, int k) {
+        Map<Integer, Integer> cntMap = new HashMap<>(nums.length);
+        for (int num : nums) {
+            int cnt = cntMap.getOrDefault(num, 0);
+            cntMap.put(num, cnt + 1);
+        }
+        PriorityQueue<Map.Entry<Integer, Integer>> pQueue = new PriorityQueue<>(Map.Entry.comparingByValue());
+        for (Map.Entry<Integer, Integer> entry : cntMap.entrySet()) {
+            pQueue.offer(entry);
+            if (pQueue.size() > k) {
+                pQueue.poll();
+            }
+        }
+        int[] res = new int[k];
+        for (int i = k - 1; i >= 0; i--) {
+            res[i] = pQueue.poll().getKey();
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         TopKFrequentElements tkf = new TopKFrequentElements();
         int[] nums = new int[] {1,1,1,2,2,3};
