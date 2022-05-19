@@ -20,8 +20,18 @@ public class GrayCode {
         return res;
     }
 
+    // 二进制直接转格雷码
+    public List<Integer> grayCodeBin2Gray(int n) {
+        List<Integer> res = new ArrayList<>(1 << n);
+        for (int i = 0; i < 1 << n; i++) {
+            // g(n) = n xor (n >> 1)
+            res.add(i ^ (i >> 1));
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         GrayCode gc = new GrayCode();
-        System.out.println(gc.grayCode(3));
+        System.out.println(gc.grayCodeBin2Gray(3));
     }
 }
