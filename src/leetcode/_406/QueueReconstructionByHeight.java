@@ -2,7 +2,9 @@ package leetcode._406;
 
 import utils.ArrayUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * https://leetcode.cn/problems/queue-reconstruction-by-height/
@@ -12,6 +14,8 @@ public class QueueReconstructionByHeight {
         // 从小到大排序
         Arrays.sort(people, (p1, p2) -> {
             if (p1[0] == p2[0]) {
+                // 身高相同，按p[1]降序排
+                // 如果按升序排，身高相同的第1个人占了一个位置，第2个人计算前面几个空白时会空白会变少
                 return p2[1] - p1[1];
             }
             return p1[0] - p2[0];
@@ -33,6 +37,24 @@ public class QueueReconstructionByHeight {
             }
         }
         return res;
+    }
+
+    public int[][] reconstructQueueDown(int[][] people) {
+        // 身高大到小排序
+        Arrays.sort(people, (p1, p2) -> {
+            if (p1[0] == p2[0]) {
+                // 身高相同，p[1]升序排序
+                // 防止数组越界
+                return p1[1] - p2[1];
+            }
+            return p2[0] - p1[0];
+        });
+        List<int[]> res = new ArrayList<>(people.length);
+        for (int[] person : people) {
+            // 直接加入，这样每次到满足前面有p[i]个大于等于p
+            res.add(person[1], person);
+        }
+        return res.toArray(new int[people.length][]);
     }
 
     public static void main(String[] args) {
