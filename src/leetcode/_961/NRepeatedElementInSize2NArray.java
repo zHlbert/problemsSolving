@@ -41,10 +41,8 @@ public class NRepeatedElementInSize2NArray {
             return nums[2];
         }
         for (int i = 0; i < len - 2; i++) {
-            for (int j = 1; j <= 2; j++) {
-                if (nums[i + j] == nums[i]) {
-                    return nums[i];
-                }
+            if (nums[i + 1] == nums[i] || nums[i + 2] == nums[i]) {
+                return nums[i];
             }
         }
         return -1;
