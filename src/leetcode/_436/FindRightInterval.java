@@ -40,10 +40,33 @@ public class FindRightInterval {
         return res;
     }
 
+    // 双指针
+    public int[] findRightInterval2Pointers(int[][] intervals) {
+        int n = intervals.length;
+        Integer[] indices1 = new Integer[n];
+        Integer[] indices2 = new Integer[n];
+        for (int i = 0; i < n; i++) {
+            indices1[i] = i;
+            indices2[i] = i;
+        }
+        Arrays.sort(indices1, Comparator.comparingInt(i -> intervals[i][0]));
+        Arrays.sort(indices2, Comparator.comparingInt(i -> intervals[i][1]));
+
+        int[] res = new int[n];
+        for (int i = 0, j = 0; i < n; i++) {
+            int right = indices2[i];
+            while (j < n && intervals[right][1] > intervals[indices1[j]][0]) {
+                j++;
+            }
+            res[right] = j == n ? -1 : indices1[j];
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         FindRightInterval fr = new FindRightInterval();
 //        int[][] intervals = new int[][] {{3,4},{2,3},{1,2}};
         int[][] intervals = new int[][] {{1,4},{2,3},{3,4}};
-        ArrayUtils.printArray(fr.findRightInterval(intervals));
+        ArrayUtils.printArray(fr.findRightInterval2Pointers(intervals));
     }
 }
