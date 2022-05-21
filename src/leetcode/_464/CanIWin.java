@@ -18,9 +18,9 @@ public class CanIWin {
 
     /**
      * 记忆化搜索+状态压缩
-     * @param usedIntegers
-     * @param curTotal
-     * @return
+     * @param usedIntegers 每一个二进制位 i 表示第 i 个数字是否使用过
+     * @param curTotal 当前加和
+     * @return 是否获胜
      */
     private boolean dfs(int usedIntegers, int curTotal) {
         if (memo[usedIntegers] != null) {
