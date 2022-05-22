@@ -19,7 +19,7 @@ import java.util.Map;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class LRUCache {
-    class DLinkNode {
+    static class DLinkNode {
         int key;
         int value;
         DLinkNode prev;
@@ -31,10 +31,10 @@ public class LRUCache {
         }
     }
 
-    private Map<Integer, DLinkNode> cache = new HashMap<Integer, DLinkNode> ();
+    private final Map<Integer, DLinkNode> cache = new HashMap<> ();
     private int size;
-    private int capacity;
-    private DLinkNode head, tail;
+    private final int capacity;
+    private final DLinkNode head, tail;
 
     public LRUCache(int capacity) {
         this.size = 0;
