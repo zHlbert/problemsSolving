@@ -2,6 +2,9 @@ package leetcode.offer52;
 
 import utils.ListNode;
 
+/**
+ * https://leetcode.cn/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/
+ */
 public class InsectionNode {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) {
