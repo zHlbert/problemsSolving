@@ -17,9 +17,9 @@ public class RemoveOutermostParentheses {
             }
             if (lr == 0) {
                 resSb.append(s, start + 1, i);
-                if (i < n - 1) {
+//                if (i < n - 1) {
                     start = i + 1;
-                }
+//                }
             }
         }
         return resSb.toString();
