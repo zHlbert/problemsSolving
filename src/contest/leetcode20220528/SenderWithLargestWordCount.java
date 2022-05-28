@@ -15,7 +15,6 @@ public class SenderWithLargestWordCount {
             int curMsg = senderMsgMap.getOrDefault(sender, 0);
             senderMsgMap.put(sender, curMsg + message.split(" ").length);
         }
-        System.out.println(senderMsgMap);
         List<Map.Entry<String, Integer>> senderMsgList = new ArrayList<>(senderMsgMap.size());
         senderMsgList.addAll(senderMsgMap.entrySet());
         return senderMsgList.stream().min((e1, e2) -> {
@@ -26,10 +25,49 @@ public class SenderWithLargestWordCount {
         }).get().getKey();
     }
 
+    public String largestWordCount1(String[] messages, String[] senders) {
+        int n = messages.length;
+        Map<String, Integer> senderMsgMap = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            String sender = senders[i];
+            String message = messages[i];
+            int curMsg = senderMsgMap.getOrDefault(sender, 0);
+            senderMsgMap.put(sender, curMsg + message.split(" ").length);
+        }
+        System.out.println(senderMsgMap);
+        List<Map.Entry<String, Integer>> senderMsgList = new ArrayList<>(senderMsgMap.size());
+        senderMsgList.addAll(senderMsgMap.entrySet());
+        int maxCount = 0;
+        String maxSender = "";
+        for (Map.Entry<String, Integer> entry : senderMsgList) {
+            int count = entry.getValue();
+            String sender = entry.getKey();
+            if (count > maxCount) {
+                maxCount = count;
+                maxSender = sender;
+            }
+            else if (count == maxCount) {
+                if (sender.compareTo(maxSender) > 0) {
+                    maxSender = sender;
+                }
+            }
+//            if (count >= maxCount) {
+//                maxCount = count;
+//                String sender = entry.getKey();
+//                if (maxSender.isBlank() || sender.compareTo(maxSender) > 0) {
+//                    maxSender = sender;
+//                }
+//            }
+        }
+        return maxSender;
+    }
+
     public static void main(String[] args) {
         SenderWithLargestWordCount sl = new SenderWithLargestWordCount();
-        String[] messages = new String[] {"Hello userTwooo dd","Hi userThree ewe gr we","Wonderful day Alice dd gg","Nice day userThree"};
-        String[] senders = new String[] {"Alice","userTwo","userThree","Alice"};
-        System.out.println(sl.largestWordCount(messages, senders));
+//        String[] messages = new String[] {"Hello userTwooo dd","Hi userThree ewe gr we","Wonderful day Alice dd gg","Nice day userThree"};
+//        String[] senders = new String[] {"Alice","userTwo","userThree","Alice"};
+        String[] messages = new String[] {"How is leetcode for everyone","Leetcode is useful for practice"};
+        String[] senders = new String[] {"Bob","Charlie"};
+        System.out.println(sl.largestWordCount1(messages, senders));
     }
 }
