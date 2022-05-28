@@ -34,6 +34,21 @@ public class MaximumTotalImportanceOfRoads {
         return sum;
     }
 
+    public long maximumImportance1(int n, int[][] roads) {
+        int[] count = new int[n];
+        for (int[] road : roads) {
+            count[road[0]]++;
+            count[road[1]]++;
+        }
+        Arrays.sort(count);
+
+        long sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += (long) (i + 1) * count[i];
+        }
+        return sum;
+    }
+
     public static void main(String[] args) {
         MaximumTotalImportanceOfRoads mti = new MaximumTotalImportanceOfRoads();
         int n = 5;
