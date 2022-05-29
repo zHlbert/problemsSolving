@@ -78,6 +78,6 @@ public class MinimumObstacleRemovalToReachCorner {
         MinimumObstacleRemovalToReachCorner mor = new MinimumObstacleRemovalToReachCorner();
 //        int[][] grid = new int[][] {{0,1,1},{1,1,0},{1,1,0}};
         int[][] grid = new int[][] {{0,1,0,0,0},{0,1,0,1,0},{0,0,0,1,0}};
-        System.out.println(mor.minimumObstacles(grid));
+        System.out.println(mor.minimumObstaclesBFS(grid));
     }
 }
