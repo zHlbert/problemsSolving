@@ -31,10 +31,12 @@ public class MinimumCostToMakeAtLeastOneValidPathInAGrid {
                 int cost = (curD == i + 1) ? 0 : 1;
                 if (dis[x][y] + cost < dis[nx][ny]) {
                     dis[nx][ny] = dis[x][y] + cost;
+                    // 保证队列中距离是单调递增的
+                    int[] nv = {nx, ny};
                     if (cost == 0) {
-                        deque.offerFirst(new int[] {nx, ny});
+                        deque.offerFirst(nv);
                     } else {
-                        deque.offerLast(new int[] {nx, ny});
+                        deque.offerLast(nv);
                     }
                 }
             }
