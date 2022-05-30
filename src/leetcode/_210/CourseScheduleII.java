@@ -20,6 +20,7 @@ import java.util.Queue;
  * https://leetcode-cn.com/problems/course-schedule-ii/
  */
 public class CourseScheduleII {
+    // 拓扑排序
     public int[] findOrderBFS(int numCourses, int[][] prerequisites) {
         List<Integer>[] edges = new ArrayList[numCourses];
         for (int i = 0; i < numCourses; i++) {

@@ -9,6 +9,7 @@ import java.util.Queue;
  * https://leetcode-cn.com/problems/course-schedule/
  */
 public class CourseSchedule {
+    // 拓扑排序
     public boolean canFinishBFS(int numCourses, int[][] prerequisites) {
         List<Integer>[] edges = new ArrayList[numCourses];
         for (int i = 0; i < numCourses; i++) {
