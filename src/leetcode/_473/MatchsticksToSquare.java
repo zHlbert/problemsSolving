@@ -30,6 +30,26 @@ public class MatchsticksToSquare {
         return backtrack(matchsticks, 0, lens);
     }
 
+    private boolean backtrack(int[] matchsticks, int idx, int[] lens) {
+        if (idx == matchsticks.length) {
+            return true;
+        }
+        for (int i = 0; i < 4; i++) {
+            // 剪枝 如果把当前火柴放到lens[i]这个边上，他的长度大于边长，直接跳过
+            // 剪枝 lens[i] == lens[i - 1] 即上一个分支的值和当前分支的一样，上一个分支没有成功，
+            // 说明这个分支也不会成功，直接跳过即可
+            if (lens[i] + matchsticks[idx] > edge || (i > 0 && lens[i] == lens[i - 1])) {
+                continue;
+            }
+            lens[i] += matchsticks[idx];
+            if (backtrack(matchsticks, idx + 1, lens)) {
+                return true;
+            }
+            lens[i] -= matchsticks[idx];
+        }
+        return false;
+    }
+
     /**
      * 状态压缩 + 动态规划 复杂度 (n * 2 ^ n)
      * @param matchsticks
@@ -71,22 +91,6 @@ public class MatchsticksToSquare {
         return dp[(1 << n) - 1] == 0;
     }
 
-    private boolean backtrack(int[] matchsticks, int idx, int[] lens) {
-        if (idx == matchsticks.length) {
-            return true;
-        }
-        for (int i = 0; i < 4; i++) {
-            if (lens[i] + matchsticks[idx] <= edge) {
-                lens[i] += matchsticks[idx];
-                if (backtrack(matchsticks, idx + 1, lens)) {
-                    return true;
-                }
-                lens[i] -= matchsticks[idx];
-            }
-        }
-        return false;
-    }
-
     public static void main(String[] args) {
         MatchsticksToSquare ms = new MatchsticksToSquare();
 //        int[] matchsticks = new int[] {1,1,2,2,2};
@@ -94,6 +98,6 @@ public class MatchsticksToSquare {
 //        int[] matchsticks = new int[] {5969561,8742425,2513572,3352059,9084275,2194427,1017540,2324577,6810719,8936380,7868365,2755770,9954463,9912280,4713511};
 //        int[] matchsticks = new int[] {10,6,5,5,5,3,3,3,2,2,2,2};
         int[] matchsticks = new int[] {1,1,2,2,2};
-        System.out.println(ms.makesquareDP(matchsticks));
+        System.out.println(ms.makesquare(matchsticks));
     }
 }
