@@ -25,6 +25,19 @@ public class ConsecutiveNumbersSum {
         return count;
     }
 
+    public int consecutiveNumbersSum1(int n) {
+        int sum = 0, count = 0;
+        for (int k = 1; sum < n; k++) {
+            // 由公式（x + 0.5 * (k - 1)） * k = n
+            // 计算sum[1, k], 则 x * k + sum = n -> (n - sum) mod k == 0
+            sum += k;
+            if (n >= sum && (n - sum) % k == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         ConsecutiveNumbersSum cns = new ConsecutiveNumbersSum();
         for (int i = 1; i < 16; i++) {
