@@ -48,6 +48,47 @@ public class PartitionToKEqualSumSubsets {
         return false;
     }
 
+    int[] dp;
+    int finish;
+    // 状态压缩 + 记忆化搜索
+    public boolean canPartitionKSubsetsMemo(int[] nums, int k) {
+        n = nums.length;
+        if (n < k) {
+            return false;
+        }
+        int sum = Arrays.stream(nums).sum();
+        if (sum % k != 0) {
+            return false;
+        }
+        target = sum / k;
+        finish = (1 << n) - 1;
+        dp = new int[finish + 1];
+        Arrays.fill(dp, -1);
+        Arrays.sort(nums);
+        dfs(nums, 0, 0);
+        return dp[finish] == 1;
+    }
+
+    private int dfs(int[] nums, int state, int curVal) {
+        if (dp[state] != -1) {
+            return dp[state];
+        }
+        if (state == finish) {
+            return dp[finish] = 1;
+        }
+        for (int i = 0; i < n && (curVal + nums[i]) <= target; i++) {
+            if ((state >> i & 1) == 1) {
+                continue;
+            }
+            int newState = state | (1 << i);
+            // curVal + nums[i] = target 时，该分组已满，从0开始
+            if (dfs(nums, newState, (curVal + nums[i]) % target) == 1) {
+                return dp[newState] = 1;
+            }
+        }
+        return dp[state] = 0;
+    }
+
     public static void main(String[] args) {
         PartitionToKEqualSumSubsets pke = new PartitionToKEqualSumSubsets();
 //        int[] nums = new int[] {4,3,2,3,5,2,1};
@@ -56,6 +97,8 @@ public class PartitionToKEqualSumSubsets {
 //        int k = 3;
         int[] nums = new int[] {2,2,2,2,3,4,5};
         int k = 4;
-        System.out.println(pke.canPartitionKSubsets(nums, k));
+        System.out.println(pke.canPartitionKSubsetsMemo(nums, k));
     }
 }
+
+
