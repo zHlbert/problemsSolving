@@ -1,8 +1,6 @@
 package leetcode._155;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class MinStack {
     PriorityQueue<Integer> queue;
