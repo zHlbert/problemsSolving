@@ -44,21 +44,21 @@ public class MinimumSizeSubarraySum {
     /**
      * 寻找 大于等于 target 的最小下标
      * @param target
-     * @param preSum
+     * @param arr
      * @param l
      * @param r
      * @return
      */
-    private int binarySearch(int target, int[] preSum, int l, int r) {
+    private int binarySearch(int target, int[] arr, int l, int r) {
         while (l < r) {
             int mid = (l + r) >> 1;
-            if (preSum[mid] >= target) {
+            if (arr[mid] >= target) {
                 r = mid;
             } else {
                 l = mid + 1;
             }
         }
-        return preSum[l] >= target ? l : -1;
+        return arr[l] >= target ? l : -1;
     }
 
     private int lowerBound(int[] a, int l, int r, int target)
