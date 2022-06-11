@@ -11,6 +11,7 @@ public class SuccessfulPairsOfSpellsAndPotions {
         int[] res = new int[n];
         for (int i = 0; i < n; i++) {
             int spell = spells[i];
+            // 二分查找
             int left = 0, right = m - 1;
             while (left < right) {
                 int mid = (left + right) >> 1;

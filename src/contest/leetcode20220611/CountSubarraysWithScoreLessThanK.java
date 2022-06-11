@@ -13,6 +13,7 @@ public class CountSubarraysWithScoreLessThanK {
 
         long res = 0;
         for (int i = 0, j = 0; i < n; i++) {
+            // 滑动窗口
             while (j <= i && (preSum[i + 1] - preSum[j]) * (i - j + 1) >= k) {
                 j++;
             }
