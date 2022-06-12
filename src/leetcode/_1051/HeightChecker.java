@@ -15,6 +15,7 @@ public class HeightChecker {
             cnt[height]++;
         }
 
+        // mIdx heights数组下标
         int mIdx = 0, res = 0;
         for (int i = 1; i < 101; i++) {
             int c = cnt[i];
