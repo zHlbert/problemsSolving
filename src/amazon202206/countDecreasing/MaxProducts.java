@@ -2,9 +2,7 @@ package amazon202206.countDecreasing;
 
 import utils.ArrayUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class MaxProducts {
     public static long findMaxProducts(List<Integer> products) {
@@ -36,15 +34,36 @@ public class MaxProducts {
         return maxSum;
     }
 
+    public static long findMaxProducts1(List<Integer> products) {
+        int n = products.size();
+        long maxSum = 0;
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && products.get(stack.peek()) >= products.get(i)) {
+                stack.pop();
+            }
+            stack.push(i);
+            int sum = 0;
+//            int cur = products.get(st)
+            for (int j = stack.peek(), cur = products.get(j); j >= 0 && cur > 0; j--) {
+                int min = Math.min(products.get(j), cur);
+                sum += min;
+                cur = min - 1;
+            }
+            maxSum = Math.max(maxSum, sum);
+        }
+        return maxSum;
+    }
+
     public static void main(String[] args) {
 //        int[] ps = new int[] {2,9,4,7,5,2};
 //        int[] ps = new int[] {2,5,6,7};
 //        int[] ps = new int[] {8,6,4,2};
-        int[] ps = new int[] {1,2,8,5};
+        int[] ps = new int[] {5,7,6,5};
         List<Integer> pros = new ArrayList<>();
         for (int product : ps) {
             pros.add(product);
         }
-        System.out.println(findMaxProducts(pros));
+        System.out.println(findMaxProducts1(pros));
     }
 }
