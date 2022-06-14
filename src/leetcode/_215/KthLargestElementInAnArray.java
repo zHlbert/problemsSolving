@@ -14,7 +14,8 @@ import java.util.Random;
 public class KthLargestElementInAnArray {
     Random random = new Random();
 
-    public int findKthLargestWithQuickSort(int[] nums, int k) {
+    // 快速选择
+    public int findKthLargestWithQuickSeletion(int[] nums, int k) {
         return quickSelect(nums, 0, nums.length - 1, nums.length - k);
     }
 
@@ -86,7 +87,7 @@ public class KthLargestElementInAnArray {
         KthLargestElementInAnArray kthLargestElementInAnArray = new KthLargestElementInAnArray();
         int[] nums = new int[] {3,2,1,5,6,4};
         System.out.println(kthLargestElementInAnArray.findKthLargestWithMaxHeap(nums, 2));
-        System.out.println(kthLargestElementInAnArray.findKthLargestWithQuickSort(nums, 2));
+        System.out.println(kthLargestElementInAnArray.findKthLargestWithQuickSeletion(nums, 2));
 
     }
 }
