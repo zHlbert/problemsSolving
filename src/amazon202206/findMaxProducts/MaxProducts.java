@@ -1,4 +1,4 @@
-package amazon202206.countDecreasing;
+package amazon202206.findMaxProducts;
 
 import utils.ArrayUtils;
 
