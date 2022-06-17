@@ -1,8 +1,10 @@
 package nexttop202206;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Random;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicStampedReference;
 
 /**
@@ -30,16 +32,9 @@ public class ConcurrentMultiValueMap<K, V> {
     public boolean put(K key, V value) {
         AtomicStampedReference<Boolean> ref = new AtomicStampedReference<>(false, STATE_INIT);
         if (ref.compareAndSet(false, true, STATE_INIT, STATE_PROGRESSING)) {
-            List<V> list = map.get(key);
-            if (list == null) {
-                ref.compareAndSet(true, false, STATE_PROGRESSING, STATE_PROCESSED);
-                throw new NullPointerException("Does not contain the key");
-            }
-            if (list.contains(value)) {
-                ref.compareAndSet(true, false, STATE_PROGRESSING, STATE_PROCESSED);
-                return false;
-            }
+            List<V> list = map.getOrDefault(key, new ArrayList<>());
             list.add(value);
+            map.put(key, list);
             ref.compareAndSet(true, false, STATE_PROGRESSING, STATE_PROCESSED);
             return true;
         }
@@ -52,7 +47,7 @@ public class ConcurrentMultiValueMap<K, V> {
             List<V> list = map.get(key);
             if (list == null) {
                 ref.compareAndSet(true, false, STATE_PROGRESSING, STATE_PROCESSED);
-                throw new NullPointerException("Does not contain the key");
+                return false;
             }
             int index = 0;
             for (; index < list.size(); index++) {
@@ -65,9 +60,47 @@ public class ConcurrentMultiValueMap<K, V> {
                 return false;
             }
             list.remove(index);
+            map.put(key, list);
             ref.compareAndSet(true, false, STATE_PROGRESSING, STATE_PROCESSED);
             return true;
         }
         return false;
+    }
+
+    public static void main(String[] args) {
+        ConcurrentMultiValueMap<String, Integer> concurrentMultiValueMap = new ConcurrentMultiValueMap<>();
+        Random random = new Random();
+        String[] strings = new String[] {"aaa", "bbb", "ccc"};
+
+
+        ExecutorService es = Executors.newFixedThreadPool(50);
+//            int finalI = i;
+        for (int j = 0; j < 10; j++) {
+            es.submit(() -> {
+                try {
+                    for (int i = 0; i < 10; i++) {
+                        concurrentMultiValueMap.put(strings[random.nextInt(strings.length)], i);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+//        }
+
+        es.shutdown();
+        try {
+            boolean b = es.awaitTermination(500, TimeUnit.MILLISECONDS);
+            System.out.println(b);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Map<String, List<Integer>> map = concurrentMultiValueMap.map;
+        for (Map.Entry<String, List<Integer>> entry : map.entrySet()) {
+            List<Integer> value = entry.getValue();
+            System.out.println(entry.getKey() + " size: " + value.size() + " : " + value);
+        }
     }
 }
