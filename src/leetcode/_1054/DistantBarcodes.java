@@ -45,9 +45,43 @@ public class DistantBarcodes {
         }
     }
 
+    public int[] rearrangeBarcodesOddEven(int[] barcodes) {
+        int[] cnt = new int[10001];
+        int maxFreq = 0, maxFreqBar = 0;
+        int maxBar = 0, minBar = 10001;
+        for (int barcode : barcodes) {
+            cnt[barcode]++;
+            maxBar = Math.max(maxBar, barcode);
+            minBar = Math.min(minBar, barcode);
+            if (cnt[barcode] > maxFreq) {
+                maxFreq = cnt[barcode];
+                maxFreqBar = barcode;
+            }
+        }
+        int index = 0, len = barcodes.length;
+        // 先用出现最多的数填充[0, 2, 4, ...]
+        while (cnt[maxFreqBar] > 0) {
+            barcodes[index] = maxFreqBar;
+            index += 2;
+            cnt[maxFreqBar]--;
+        }
+        for (int i = 0; i < cnt.length; i++) {
+            while (cnt[i] > 0) {
+                // 下标已经超出长度，从1开始
+                if (index >= len) {
+                    index = 1;
+                }
+                barcodes[index] = i;
+                index += 2;
+                cnt[i]--;
+            }
+        }
+        return barcodes;
+    }
+
     public static void main(String[] args) {
         DistantBarcodes db = new DistantBarcodes();
         int[] barcodes = new int[] {1,1,1,1,2,2,3,3};
-        ArrayUtils.printArray(db.rearrangeBarcodes(barcodes));
+        ArrayUtils.printArray(db.rearrangeBarcodesOddEven(barcodes));
     }
 }
