@@ -12,7 +12,7 @@ public class RangeModule {
     }
 
     public void addRange(int left, int right) {
-        Iterator<Interval> it = ranges.tailSet(new Interval(0, left - 1)).iterator();
+        Iterator<Interval> it = ranges.tailSet(new Interval(0, left)).iterator();
         while (it.hasNext()) {
             Interval iv = it.next();
             if (right < iv.left) {
@@ -53,10 +53,16 @@ public class RangeModule {
 
     public static void main(String[] args) {
         RangeModule rm = new RangeModule();
-        rm.addRange(2,3);
-        rm.addRange(5,8);
-        System.out.println(rm.queryRange(5,9));
-        rm.removeRange(6,7);
-        System.out.println(rm.queryRange(7,8));
+//        rm.addRange(2,3);
+//        rm.addRange(5,8);
+//        System.out.println(rm.queryRange(5,9));
+//        rm.removeRange(6,7);
+//        System.out.println(rm.queryRange(7,8));
+        rm.addRange(10,20);
+        rm.addRange(20,25);
+        rm.addRange(26,30);
+        rm.removeRange(14,16);
+        System.out.println(rm.queryRange(20,21));
+        System.out.println(rm.queryRange(25,26));
     }
 }
