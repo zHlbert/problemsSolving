@@ -21,6 +21,7 @@ public class ClosestDessertCost {
         return closestCost;
     }
 
+    // 回溯
     private void backtrack(int[] toppingCosts, int target, int cost, int ti) {
         int curDiff = Math.abs(cost - target);
         if (curDiff < minDiff || curDiff == minDiff && cost < closestCost) {
