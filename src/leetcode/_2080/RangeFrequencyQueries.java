@@ -28,6 +28,7 @@ class RangeFreqQuery {
             occr[i] = new ArrayList<>();
         }
 
+        // 记录每个值的出现位置(下标)
         for (int i = 0; i < arr.length; i++) {
             occr[arr[i]].add(i);
         }
