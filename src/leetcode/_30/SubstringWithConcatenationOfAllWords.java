@@ -16,6 +16,7 @@ public class SubstringWithConcatenationOfAllWords {
             return res;
         }
         for (String word : words) {
+            // s中没有，直接返回
             if (!s.contains(word)) {
                 return res;
             }
@@ -28,6 +29,7 @@ public class SubstringWithConcatenationOfAllWords {
         for (int i = 0; i < oneLen; i++) {
             int left = i, right = i, count = 0;
             Map<String, Integer> subMap = new HashMap<>();
+            // 右窗口不能超出主串长度
             while (right + oneLen <= sl) {
                 String word = s.substring(right, right + oneLen);
                 right += oneLen;
