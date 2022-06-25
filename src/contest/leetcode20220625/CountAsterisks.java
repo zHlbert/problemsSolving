@@ -1,5 +1,8 @@
 package contest.leetcode20220625;
 
+/**
+ * https://leetcode.cn/problems/greatestcount-asterisks/
+ */
 public class CountAsterisks {
     public int countAsterisks(String s) {
         String[] split = s.split("\\|", -1);

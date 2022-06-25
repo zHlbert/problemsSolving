@@ -3,6 +3,9 @@ package contest.leetcode20220625;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * https://leetcode.cn/problems/maximum-xor-after-operations/
+ */
 public class MaximumXORAfterOperations {
     public int maximumXOR(int[] nums) {
         int n = nums.length;

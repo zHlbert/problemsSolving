@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
+/**
+ * https://leetcode.cn/problems/count-unreachable-pairs-of-nodes-in-an-undirected-graph/
+ */
 public class CountUnreachablePairsOfNodesInAnUndirectedGraph {
     boolean[] visited;
     List<Integer>[] nodeEdges;
