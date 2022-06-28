@@ -10,7 +10,7 @@ public class EncodeAndDecodeTinyURL {
 
 }
 
-public class Codec {
+class Codec {
 
     public static final String urlPrefix = "https://leetcode.com/problems/";
     public static int id = 0;
