@@ -38,6 +38,7 @@ public class MinimumScoreAfterRemovalsOnATree {
         for (int i = 0; i < n; i++) {
             dfs(i, -1);
             for (int ne : nes[i]) {
+                // 第一次切割
                 getRes(ne, i, s[ne]);
             }
         }
@@ -54,6 +55,7 @@ public class MinimumScoreAfterRemovalsOnATree {
     private void getRes(int node, int pre, int sum) {
         for (int ne : nes[node]) {
             if (ne != pre) {
+                // 第二次切割
                 // 计算三个子树的异或和
                 int s1 = all ^ sum, s2 = sum ^ s[ne], s3 = s[ne];
                 res = Math.min(res, Math.max(s1, Math.max(s2, s3)) - Math.min(s1, Math.min(s2, s3)));
