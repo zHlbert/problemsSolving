@@ -12,15 +12,15 @@ public class PrimeArrangements {
                 m++;
             }
         }
+        return (int) (factorial(m) * factorial(n - m) % mod);
+    }
+
+    private long factorial(int m) {
         long res = 1;
         for (int i = 0; i < m; i++) {
             res = (res * (i + 1)) % mod;
         }
-
-        for (int i = 0; i < n - m; i++) {
-            res = (res * (i + 1)) % mod;
-        }
-        return (int) res;
+        return res;
     }
 
     public boolean isPrime(int x) {
