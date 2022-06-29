@@ -3,13 +3,15 @@ package leetcode._958;
 import utils.TreeNode;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 
 /**
  * https://leetcode.cn/problems/check-completeness-of-a-binary-tree/
  */
 public class CheckCompletenessOfABinaryTree {
-    public boolean isCompleteTree(TreeNode root) {
+    public boolean isCompleteTreeBFS(TreeNode root) {
         Deque<TreeNode> queue = new ArrayDeque<>();
         queue.offer(root);
         boolean isComplete = true, end = false;
@@ -40,5 +42,37 @@ public class CheckCompletenessOfABinaryTree {
             }
         }
         return isComplete;
+    }
+
+    public boolean isCompleteTreeBFS1(TreeNode root) {
+        List<ANode> nodes = new ArrayList<>();
+        nodes.add(new ANode(root, 1));
+        int i = 0;
+        while (i < nodes.size()) {
+            ANode aNode = nodes.get(i++);
+            TreeNode node = aNode.node;
+            if (node != null) {
+                nodes.add(new ANode(node.left, aNode.code * 2));
+                nodes.add(new ANode(node.right, aNode.code * 2 + 1));
+            }
+        }
+        return nodes.size() == nodes.get(i - 1).code;
+    }
+
+    public static void main(String[] args) {
+        CheckCompletenessOfABinaryTree cc = new CheckCompletenessOfABinaryTree();
+        TreeNode root = new TreeNode(1);
+        root.right = new TreeNode(2);
+        System.out.println(cc.isCompleteTreeBFS1(root));
+    }
+}
+
+class ANode {
+    public int code;
+    public TreeNode node;
+
+    public ANode(TreeNode node, int val) {
+        this.node = node;
+        this.code = val;
     }
 }
