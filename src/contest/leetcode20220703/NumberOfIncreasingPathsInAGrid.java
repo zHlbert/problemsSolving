@@ -12,6 +12,7 @@ public class NumberOfIncreasingPathsInAGrid {
     public int countPaths(int[][] grid) {
         m = grid.length;
         n = grid[0].length;
+        // f[i][j] 表示 从（x, y）出发的路径数量
         f = new int[m][n];
         this.grid = grid;
         long res = 0;

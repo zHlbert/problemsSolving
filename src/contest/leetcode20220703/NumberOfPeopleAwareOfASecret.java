@@ -3,6 +3,7 @@ package contest.leetcode20220703;
 public class NumberOfPeopleAwareOfASecret {
     int mod = (int) (1e9 + 7);
     public int peopleAwareOfSecret(int n, int delay, int forget) {
+        // dp[i][0] 表示第i天知道秘密的人数, dp[i][1] 表示第 i 天 新增的被分享秘密的人数
         long[][] dp = new long[n + 1][2];
         dp[1][0] = 1;
         dp[1][1] = 1;
