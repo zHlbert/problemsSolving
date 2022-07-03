@@ -5,6 +5,7 @@ import utils.LinkedListUtils;
 import utils.ListNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SpiralMatrixIV {
@@ -46,6 +47,30 @@ public class SpiralMatrixIV {
                 val = j < listVals.size() ? listVals.get(j++) : -1;
             }
             left++;
+        }
+        return res;
+    }
+
+    public int[][] spiralMatrix1(int m, int n, ListNode head) {
+        int[] dx = new int[] {0,1,0,-1};
+        int[] dy = new int[] {1,0,-1,0};
+        ListNode cur = head;
+        int[][] res = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            Arrays.fill(res[i], -1);
+        }
+        int x = 0, y = 0, d = 0;
+        for (int i = 0; i < m * n && cur != null; i++) {
+            res[x][y] = cur.val;
+            int nx = x + dx[d], ny = y + dy[d];
+            if (nx < 0 || nx >= m || ny < 0 || ny >= n || res[nx][ny] != -1) {
+                d = (d + 1) % 4;
+                nx = x + dx[d];
+                ny = y + dy[d];
+            }
+            x = nx;
+            y = ny;
+            cur = cur.next;
         }
         return res;
     }
