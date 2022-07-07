@@ -60,7 +60,8 @@ public class MaximumCompatibilityScoreSum {
         int[][] g = new int[m][m];
         for (int i = 0; i < m; i++) { // 遍历学生
             for (int j = 0; j < m; j++) { // 遍历老师
-                g[i][j] = n - Integer.bitCount(stu[i] ^ men[j]); // 学生 i 到 老师 j 的兼容性和
+                // 学生 i 到 老师 j 的兼容性和
+                g[i][j] = n - Integer.bitCount(stu[i] ^ men[j]);
             }
         }
 
