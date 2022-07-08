@@ -73,6 +73,7 @@ public class LengthOfLongestFibonacciSubsequence {
             index.put(arr[i], i);
         }
 
+        // dp[j][i] 表示以 arr[j] 和 arr[i] 作为最后两个数字的斐波那契子序列的最大长度
         int[][] dp = new int[n][n];
         int res = 0;
         for (int i = 1; i < n; i++) {
