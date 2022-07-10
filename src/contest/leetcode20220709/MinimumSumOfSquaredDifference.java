@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 public class MinimumSumOfSquaredDifference {
+    // TODO: 2022/7/10
     public long minSumSquareDiff(int[] nums1, int[] nums2, int k1, int k2) {
         int n = nums1.length;
         int[] diff = new int[n];
