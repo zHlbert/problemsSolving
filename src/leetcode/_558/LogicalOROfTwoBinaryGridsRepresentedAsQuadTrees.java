@@ -5,15 +5,6 @@ package leetcode._558;
  */
 public class LogicalOROfTwoBinaryGridsRepresentedAsQuadTrees {
     public Node intersect(Node quadTree1, Node quadTree2) {
-//        if (quadTree1 == null && quadTree2 == null) {
-//            return null;
-//        }
-//        if (quadTree1 == null) {
-//            return quadTree2;
-//        }
-//        if (quadTree2 == null) {
-//            return quadTree1;
-//        }
         if (quadTree1.isLeaf && quadTree2.isLeaf) {
             return new Node(quadTree1.val || quadTree2.val, true, null, null, null, null);
         }
