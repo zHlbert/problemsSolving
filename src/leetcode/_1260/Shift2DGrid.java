@@ -15,15 +15,6 @@ public class Shift2DGrid {
             }
         }
 
-        // List<List<Integer>> s = new ArrayList<>();
-        // for (int i = 0; i < m; i++) {
-        //     List<Integer> r = new ArrayList<>();
-        //     for (int j = 0; j < n; j++) {
-        //         r.add(res[i][j]);
-        //     }
-        //     s.add(r);
-        // }
-        // return s;
         List<List<Integer>> s = new ArrayList<>();
         for (int[] re : res) {
             s.add(Arrays.stream(re).boxed().collect(Collectors.toList()));
