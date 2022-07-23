@@ -156,7 +156,7 @@ public class SequenceReconstruction {
             }
         }
 
-        Queue<Integer> queue = new ArrayDeque<>();
+        Queue<Integer> queue = new LinkedList<>();
         for (int i = 1; i <= n; i++) {
             if (ind[i] == 0) {
                 queue.offer(i);
