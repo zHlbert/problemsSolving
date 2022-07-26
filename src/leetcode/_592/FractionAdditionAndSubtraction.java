@@ -35,7 +35,7 @@ public class FractionAdditionAndSubtraction {
         int gcd = getGcd(Math.abs(numer), denom);
         numer = numer / gcd;
         denom = denom / gcd;
-        return String.valueOf(numer) + '/' + denom;
+        return numer + "/" + denom;
     }
 
     private int getGcd(int a, int b) {
