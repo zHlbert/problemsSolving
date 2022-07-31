@@ -46,6 +46,34 @@ public class LongestCycleInAGraph {
         }
     }
 
+    /**
+     * 内向基环树
+     * @param edges
+     * @return
+     */
+    public int longestCycle1(int[] edges) {
+        int n = edges.length;
+        int res = -1;
+        int[] time = new int[n];
+        for (int i = 0, clock = 1; i < n; i++) {
+            if (time[i] > 0) {
+                continue;
+            }
+            for (int x = i, start = clock; x >= 0; x = edges[x]) {
+                // 重复访问
+                if (time[x] > 0) {
+                    // 找到新的环
+                    if (time[x] >= start) {
+                        res = Math.max(res, clock - time[x]);
+                    }
+                    break;
+                }
+                time[x] = clock++;
+            }
+        }
+        return res;
+    }
+
     // TODO: 2022/7/31 BFS
 
     public static void main(String[] args) {
@@ -53,6 +81,6 @@ public class LongestCycleInAGraph {
 //        int[] edges = new int[] {3,3,4,2,3};
         int[] edges = new int[] {2,-1,3,1};
 //        int[] edges = new int[] {4,3,3,4,7,2,3,3};
-        System.out.println(lc.longestCycle(edges));
+        System.out.println(lc.longestCycle1(edges));
     }
 }
