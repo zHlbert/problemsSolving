@@ -15,7 +15,8 @@ public class SortAnArray {
 //        selectionSort(nums);
 //        insertionSort(nums);
 //        shellSort(nums);
-        quickSortByMoving(nums);
+//        quickSortByMoving(nums);
+        quickSortSimple(nums, 0, nums.length - 1);
         return nums;
     }
 
@@ -170,6 +171,26 @@ public class SortAnArray {
         }
         nums[l] = temp;
         return l;
+    }
+
+    public void quickSortSimple(int[] nums, int l, int r) {
+        if (l >= r) {
+            return;
+        }
+        int i = l - 1, j = r + 1, x = nums[(l + r) >> 1];
+        while (i < j) {
+            do {
+                i++;
+            } while (nums[i] < x);
+            do {
+                j--;
+            } while (nums[j] > x);
+            if (i < j) {
+                swap(nums, i, j);
+            }
+        }
+        quickSortSimple(nums, l, j);
+        quickSortSimple(nums, j + 1, r);
     }
 
     public static void main(String[] args) {
