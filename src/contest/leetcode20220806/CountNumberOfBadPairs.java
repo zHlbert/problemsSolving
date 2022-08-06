@@ -20,14 +20,16 @@ public class CountNumberOfBadPairs {
 //        return res;
 //    }
 
+    /**
+     * 等式转换 map
+     * @param nums
+     * @return
+     */
     public long countBadPairs(int[] nums) {
         int n = nums.length;
-        int[] diff = new int[n];
-        for (int i = 0; i < n; i++) {
-            diff[i] = nums[i] - i;
-        }
         Map<Integer, Integer> map = new HashMap<>();
-        for (int d : diff) {
+        for (int i = 0; i < n; i++) {
+            int d = nums[i] - i;
             map.put(d, map.getOrDefault(d, 0) + 1);
         }
         long res = (long) n * (n - 1) / 2;
