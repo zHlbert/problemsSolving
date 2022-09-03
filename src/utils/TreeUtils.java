@@ -1,7 +1,6 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 树工具类
@@ -45,4 +44,71 @@ public class TreeUtils {
 //        }
 //        return root;
 //    }
+
+    // Encodes a tree to a single string.
+    public static String serialize(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        return preorder(root, sb).toString();
+    }
+
+    private static StringBuilder preorder(TreeNode root, StringBuilder sb) {
+        if (root == null) {
+            sb.append("X,");
+        } else {
+            sb.append(root.val).append(",");
+            sb = preorder(root.left, sb);
+            sb = preorder(root.right, sb);
+        }
+        return sb;
+    }
+
+    // Decodes your encoded data to tree.
+    public static TreeNode deserialize(String data) {
+        if (data.isEmpty()) {
+            return null;
+        }
+        String[] treeArr = data.split(",");
+        List<String> treeList = new LinkedList<>(Arrays.asList(treeArr));
+        return construct(treeList);
+    }
+
+    private static TreeNode construct(List<String> treeList) {
+        String nodeStr = treeList.get(0);
+        if (nodeStr.equals("X")) {
+            treeList.remove(0);
+            return null;
+        }
+        TreeNode cur = new TreeNode(Integer.parseInt(nodeStr));
+        treeList.remove(0);
+        cur.left = construct(treeList);
+        cur.right = construct(treeList);
+        return cur;
+    }
+
+    public static String serializeByLevel(TreeNode root) {
+        List<String> treeList = serializeByLevelToList(root);
+        return "[" + String.join(",", treeList) + "]";
+    }
+
+    private static List<String> serializeByLevelToList(TreeNode root) {
+        List<String> list = new ArrayList<>();
+        if (root == null) {
+            return list;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                list.add(node != null ? String.valueOf(node.val) : "X");
+                if (node == null) {
+                    continue;
+                }
+                queue.offer(node.left);
+                queue.offer(node.right);
+            }
+        }
+        return list;
+    }
 }
