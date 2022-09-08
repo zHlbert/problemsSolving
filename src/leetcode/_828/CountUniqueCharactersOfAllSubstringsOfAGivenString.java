@@ -81,17 +81,13 @@ public class CountUniqueCharactersOfAllSubstringsOfAGivenString {
         int n = cs.length;
         for (int i = 0; i < n; i++) {
             int c = cs[i] - 'A';
-            if (idx[c] > -1) {
-                res += (idx[c] - pIdx[c]) * (i - idx[c]);
-            }
+            res += (idx[c] - pIdx[c]) * (i - idx[c]);
             pIdx[c] = idx[c];
             idx[c] = i;
         }
 
         for (int i = 0; i < 26; i++) {
-            if (idx[i] > -1) {
-                res += (n - idx[i]) * (idx[i] - pIdx[i]);
-            }
+            res += (n - idx[i]) * (idx[i] - pIdx[i]);
         }
         return res;
     }
