@@ -5,7 +5,8 @@ public class CrawlerLogFolder {
         int top = 0;
         for (String log : logs) {
             if (log.equals("../")) {
-                top = Math.max(0, top - 1);
+                if (top > 0)
+                    top--;
             } else if (!log.equals("./")) {
                 top++;
             }
@@ -15,7 +16,7 @@ public class CrawlerLogFolder {
 
     public static void main(String[] args) {
         CrawlerLogFolder clf = new CrawlerLogFolder();
-        String[] logs = {"d2/", "./", "f4/", "./", "../", "3/"};
+        String[] logs = {"d2/", "./", "f4/", "./", "../", "3/", "../", "../", "../"};
         System.out.println(clf.minOperations(logs));
     }
 }
