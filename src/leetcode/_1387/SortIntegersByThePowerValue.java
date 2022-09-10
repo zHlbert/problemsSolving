@@ -14,11 +14,9 @@ public class SortIntegersByThePowerValue {
         for (int i = lo; i <= hi; i++) {
             getPower(i);
         }
-//        System.out.println(pw);
         int[] q = new int[hi - lo + 1];
         for (int i = lo, j = 0; i <= hi; i++, j++) {
             q[j] = i;
-            System.out.println(i + " : " + pw.get(i));
         }
         return kth(q, 0, q.length - 1, k);
     }
