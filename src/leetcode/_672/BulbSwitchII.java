@@ -1,6 +1,5 @@
 package leetcode._672;
 
-import java.io.BufferedReader;
 import java.util.HashSet;
 import java.util.Set;
 
