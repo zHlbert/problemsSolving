@@ -27,12 +27,13 @@ public class DigitSequence {
         // 所在数
         int num = start + index / d;
         int[] digits = new int[d];
-        int i = 0;
+        int i = d - 1;
+        // 摘出数字中每一位
         while (num > 0) {
-            digits[i++] = num % 10;
+            digits[i--] = num % 10;
             num /= 10;
         }
-        return digits[d - 1 - index % d];
+        return digits[index % d];
     }
 
     public static void main(String[] args) {
