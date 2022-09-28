@@ -14,10 +14,6 @@ public class StringRotationLCCI {
         if (s1.length() != s2.length()) {
             return false;
         }
-        int n = s1.length();
-        if (n == 0) {
-            return true;
-        }
 
         String ns = s2 + s2;
         return ns.contains(s1);
