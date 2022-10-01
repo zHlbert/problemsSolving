@@ -3,7 +3,7 @@ package leetcode._927;
 import java.util.Arrays;
 
 /**
- *
+ * https://leetcode.cn/problems/three-equal-parts/
  */
 public class ThreeEqualParts {
     public int[] threeEqualParts(int[] arr) {
