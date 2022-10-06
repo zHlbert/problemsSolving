@@ -40,5 +40,6 @@ public class SubMatrixSum {
                     - sum[qa[i][2]][qa[i][1] - 1]
                     + sum[qa[i][0] - 1][qa[i][1] - 1]);
         }
+        reader.close();
     }
 }
