@@ -25,6 +25,12 @@ public class SubSequenceJudge {
         reader.close();
     }
 
+    /**
+     * 双指针
+     * @param A
+     * @param B
+     * @return
+     */
     private static boolean isSubsequence(int[] A, int[] B) {
         for (int i = 0, j = 0; i < A.length; i++) {
             while (j < B.length && B[j] != A[i]) {

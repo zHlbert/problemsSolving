@@ -26,6 +26,13 @@ public class TargetSumInArr {
         reader.close();
     }
 
+    /**
+     * 双指针
+     * @param A
+     * @param B
+     * @param x
+     * @return
+     */
     private static int[] findIJ(int[] A, int[] B, int x) {
         for (int i = 0, j = B.length - 1; i < A.length; i++) {
             while (j >= 0 && A[i] + B[j] > x) {
