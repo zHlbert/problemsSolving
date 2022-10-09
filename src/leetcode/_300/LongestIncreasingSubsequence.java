@@ -32,7 +32,39 @@ public class LongestIncreasingSubsequence {
         return maxLen;
     }
 
-    //  TODO: 贪心 + 二分查找
+
+    /**
+     * 贪心 + 二分查找
+     * https://leetcode.cn/problems/longest-increasing-subsequence/solution/zui-chang-shang-sheng-zi-xu-lie-by-leetcode-soluti/
+     * @param nums
+     * @return
+     */
+    public int lengthOfLIS1(int[] nums) {
+        int n = nums.length, len = 1;
+        int[] d = new int[n + 1];
+        d[len] = nums[0];
+        for (int i = 1; i < n; i++) {
+            if (nums[i] > d[len]) {
+                d[++len] = nums[i];
+            } else {
+                int l = 1, r = len;
+
+                while (l < r) {
+                    int mid = (l + r + 1) >> 1;
+                    if (d[mid] < nums[i]) {
+                        l = mid;
+                    } else {
+                        r = mid - 1;
+                    }
+                }
+                int pos = d[l] < nums[i] ? l : 0;
+                d[pos + 1] = nums[i];
+
+            }
+//            System.out.println(Arrays.toString(d));
+        }
+        return len;
+    }
 
     public static void main(String[] args) {
         LongestIncreasingSubsequence l = new LongestIncreasingSubsequence();
