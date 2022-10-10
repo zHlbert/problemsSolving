@@ -1,5 +1,8 @@
 package leetcode._801;
 
+/**
+ * https://leetcode.cn/problems/minimum-swaps-to-make-sequences-increasing/
+ */
 public class MinimumSwapsToMakeSequencesIncreasing {
     /**
      * DP 动态规划 状态机
@@ -27,6 +30,7 @@ public class MinimumSwapsToMakeSequencesIncreasing {
                 dp[i][1] = dp[i - 1][0] + 1;
             }
         }
+
         return Math.min(dp[n - 1][0], dp[n - 1][1]);
     }
 
