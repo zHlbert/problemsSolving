@@ -62,6 +62,39 @@ public class PossibleBipartition {
         return true;
     }
 
+    int[] colors;
+
+    public boolean possibleBipartition1(int n, int[][] dislikes) {
+        colors = new int[n + 1];
+        List<Integer>[] dis = new ArrayList[n + 1];
+        for (int i = 1; i <= n; i++) {
+            dis[i] = new ArrayList<>();
+        }
+        for (int[] dislike : dislikes) {
+            dis[dislike[0]].add(dislike[1]);
+            dis[dislike[1]].add(dislike[0]);
+        }
+        for (int i = 1; i <= n; i++) {
+            if (colors[i] == 0 && !dfs(dis, 1, i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean dfs(List<Integer>[] dis, int color, int p) {
+        colors[p] = color;
+        for (Integer nx : dis[p]) {
+            if (colors[nx] == colors[p]) {
+                return false;
+            }
+            if (colors[nx] == 0 && !dfs(dis, 3 ^ color, nx)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         PossibleBipartition pb = new PossibleBipartition();
 //        int[][] dislikes = {{1,2},{1,3},{2,3}};
@@ -87,6 +120,6 @@ public class PossibleBipartition {
                 {22,24},{17,32},{23,29},{3,30},{8,30},{41,48},{1,39},{8,47},{30,44},{9,46},{22,45},{7,26},{35,42},
                 {1,27},{17,30},{20,46},{18,29},{3,29},{4,30},{3,46}};
         int n = 50;
-        System.out.println(pb.possibleBipartition(n, dislikes));
+        System.out.println(pb.possibleBipartition1(n, dislikes));
     }
 }
