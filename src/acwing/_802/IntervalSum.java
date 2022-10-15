@@ -38,18 +38,22 @@ public class IntervalSum {
             alls.add(query[i][1]);
         }
 
+        // 去重排序
         alls = new ArrayList<>(new HashSet<>(alls));
         alls.sort(Comparator.comparingInt(a -> a));
 
+        // 处理相加
         for (int i = 0; i < n; i++) {
             int x = find(add[i][0]);
             A[x] += add[i][1];
         }
 
+        // 前缀和
         for (int i = 1; i <= alls.size(); i++) {
             S[i] = S[i - 1] + A[i];
         }
 
+        // 计算区间和
         for (int i = 0; i < m; i++) {
             int[] q = query[i];
             int l = find(q[0]), r = find(q[1]);
