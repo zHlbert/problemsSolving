@@ -8,10 +8,10 @@ public class OnlineStockSpan {
         StockSpanner ss = new StockSpanner();
         int[] prices = new int[] {100,80,60,70,60,75,85};
         for (int price : prices) {
-            System.out.println(ss.next(price));
+            System.out.print(ss.next(price) + " ");
         }
+        System.out.println();
     }
-
 }
 
 /**
@@ -41,7 +41,7 @@ class StockSpanner {
         while (top != 0 && price >= prices[stack[top - 1]]) {
             top--;
         }
-        int start = top == 0 ? -1 : stack[top - 1];
+        int start = (top == 0) ? -1 : stack[top - 1];
         stack[top++] = end;
         return end - start;
     }
