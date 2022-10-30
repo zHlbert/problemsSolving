@@ -4,7 +4,7 @@ import utils.ArrayUtils;
 
 public class MagicalString {
     public int magicalString(int n) {
-        int[] mg = new int[100010];
+        int[] mg = new int[n + 5];
         int flag = 1;
         mg[0] = 1;
         mg[1] = 2;
