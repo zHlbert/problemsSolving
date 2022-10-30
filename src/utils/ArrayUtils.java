@@ -8,6 +8,13 @@ public class ArrayUtils {
         System.out.println();
     }
 
+    public static void printArray(int[] nums, int start, int end) {
+        for (int i = Math.max(0, start); i < Math.min(end, nums.length); i++) {
+            System.out.print(nums[i] + " ");
+        }
+        System.out.println();
+    }
+
     public static void print2DArray(int[][] nums) {
         for (int[] ints : nums) {
             for (int anInt : ints) {
