@@ -38,7 +38,7 @@ public class CoordinateWithMaximumNetworkQuality {
     }
 
     public int[] bestCoordinate1(int[][] towers, int radius) {
-        int minx = 0, miny = 0, maxx = 150, maxy = 150;
+        int minx = 100, miny = 100, maxx = 0, maxy = 0;
         int maxQ = 0;
         int[] res = new int[2];
         int r2 = radius * radius;
