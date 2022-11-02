@@ -1,6 +1,12 @@
 package leetcode._1668;
 
 public class MaximumRepeatingSubstring {
+    /**
+     * KMP
+     * @param sequence
+     * @param word
+     * @return
+     */
     public int maxRepeating(String sequence, String word) {
         int n = sequence.length(), m = word.length();
         sequence = " " + sequence;
