@@ -1,7 +1,6 @@
 package acwing._835;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -13,6 +12,11 @@ public class TrieStringCount {
 
     static int[] cnt = new int[N];
 
+    /**
+     * 字典树
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(reader.readLine());
