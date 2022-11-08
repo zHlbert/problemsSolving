@@ -7,7 +7,7 @@ import java.io.*;
  *
  * https://www.acwing.com/problem/content/145/
  */
-public class MaximumNORSum {
+public class MaximumXORSum {
     static int N = 100010, M = 3000010;
 
     static int idx = 0;
