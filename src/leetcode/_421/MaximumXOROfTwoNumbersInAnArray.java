@@ -9,6 +9,11 @@ public class MaximumXOROfTwoNumbersInAnArray {
 
     int idx = 0;
 
+    /**
+     * 字典树
+     * @param nums
+     * @return
+     */
     public int findMaximumXOR(int[] nums) {
         int n = nums.length;
         trie = new int[31 * n + 10][2];
@@ -48,4 +53,13 @@ public class MaximumXOROfTwoNumbersInAnArray {
         }
         return res;
     }
+
+//    public int findMaximumXOR1(int[] nums) {
+//        int res = 0;
+//        for (int i = 30; i >= 0; i--) {
+//
+//        }
+//    }
+
+    // TODO: 2022/11/9 字典树类
 }
