@@ -49,6 +49,51 @@ public class MinimumNumberOfOperationsToSortABinaryTreeByLevel {
     // TODO: 2022/11/13 循环节
 
     // TODO: 2022/11/13 并查集
+    int[] p;
+
+    int N = 100010;
+
+    public int minimumOperations1(TreeNode root) {
+        p = new int[N];
+        Queue<TreeNode> q = new ArrayDeque<>();
+        q.offer(root);
+        int res = 0;
+        while (!q.isEmpty()) {
+            int sz = q.size();
+            int[] a = new int[sz];
+            for (int i = 0; i < sz; i++) {
+                TreeNode node = q.poll();
+                a[i] = node.val;
+                if (node.left != null) {
+                    q.offer(node.left);
+                }
+                if (node.right != null) {
+                    q.offer(node.right);
+                }
+            }
+            Map<Integer, Integer> pos = new HashMap<>();
+            for (int i = 0; i < sz; i++) {
+                pos.put(a[i], i);
+                p[i] = i;
+            }
+            Arrays.sort(a);
+            int cnt = sz;
+            for (int i = 0; i < sz; i++) {
+                int pa = find(i), pb = find(pos.get(a[i]));
+                if (pa != pb) {
+                    p[pa] = pb;
+                    cnt--;
+                }
+            }
+            res += sz - cnt;
+        }
+        return res;
+    }
+
+    private int find(int x) {
+        if (p[x] != x) p[x] = find(p[x]);
+        return p[x];
+    }
 
     public static void main(String[] args) {
         MinimumNumberOfOperationsToSortABinaryTreeByLevel mn = new MinimumNumberOfOperationsToSortABinaryTreeByLevel();
@@ -59,6 +104,6 @@ public class MinimumNumberOfOperationsToSortABinaryTreeByLevel {
         root.left.right = new TreeNode(6);
         root.right.left = new TreeNode(5);
         root.right.right = new TreeNode(4);
-        System.out.println(mn.minimumOperations(root));
+        System.out.println(mn.minimumOperations1(root));
     }
 }
