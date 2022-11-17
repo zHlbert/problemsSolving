@@ -8,7 +8,7 @@ import java.util.Random;
  */
 public class SortAnArray {
     public int[] sortArray(int[] nums) {
-//        heapSort(nums);
+        heapSort(nums);
 //        quickSort(nums);
 //        mergeSort(nums);
 //        bubbleSort(nums);
@@ -16,7 +16,7 @@ public class SortAnArray {
 //        insertionSort(nums);
 //        shellSort(nums);
 //        quickSortByMoving(nums);
-        quickSortSimple(nums, 0, nums.length - 1);
+//        quickSortSimple(nums, 0, nums.length - 1);
         return nums;
     }
 
