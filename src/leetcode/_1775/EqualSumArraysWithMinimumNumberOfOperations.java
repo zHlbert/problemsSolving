@@ -91,16 +91,81 @@ public class EqualSumArraysWithMinimumNumberOfOperations {
         return i + n - j - 1;
     }
 
+    /**
+     * 计数
+     * @param nums1
+     * @param nums2
+     * @return
+     */
+    public int minOperations1(int[] nums1, int[] nums2) {
+        int m = nums1.length, n = nums2.length;
+        int s1 = 0, s2 = 0;
+        int[] cnt1 = new int[7], cnt2 = new int[7];
+        for (int x : nums1) {
+            s1 += x;
+            cnt1[x]++;
+        }
+        for (int x : nums2) {
+            s2 += x;
+            cnt2[x]++;
+        }
+        if (s1 == s2) return 0;
+        boolean less = s1 < s2;
+        if (less && 6 * m < n || !less && 6 * n < m) return -1;
+        int diff = s1 - s2;
+        return less ? minOpsCnt(cnt1, cnt2, -diff) : minOpsCnt(cnt2, cnt1, diff);
+    }
+
+    private int minOpsCnt(int[] cnt1, int[] cnt2, int diff) {
+        int d = diff, res = 0;
+        for (int i = 1, j = 6; d > 0;) {
+            if (i > 5 && j < 2) break;
+            int id = 0, dd = 0;
+            if (i < 5) {
+                if (cnt1[i] == 0) {
+                    i++;
+                    continue;
+                } else {
+                    id = 6 - i;
+                }
+            }
+            if (j > 1) {
+                if (cnt2[j] == 0) {
+                    j--;
+                    continue;
+                } else {
+                    dd = j - 1;
+                }
+            }
+            if (id >= dd) {
+                if (id * cnt1[i] > d) {
+                    res += (d + id - 1) / id;
+                    break;
+                }
+                res += cnt1[i];
+                d -= id * cnt1[i++];
+            } else {
+                if (dd * cnt2[j] > d) {
+                    res += (d + dd - 1) / dd;
+                    break;
+                }
+                res += cnt2[j];
+                d -= dd * cnt2[j--];
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         EqualSumArraysWithMinimumNumberOfOperations es = new EqualSumArraysWithMinimumNumberOfOperations();
-        int[] nums1 = new int[] {6,6};
-        int[] nums2 = new int[] {1};
-//        int[] nums1 = new int[] {1,1,1,1,1,1,1};
-//        int[] nums2 = new int[] {6};
+//        int[] nums1 = new int[] {6,6};
+//        int[] nums2 = new int[] {1};
+        int[] nums1 = new int[] {1,1,1,1,1,1,1};
+        int[] nums2 = new int[] {6};
 //        int[] nums1 = new int[] {1,2,3,4,5,6};
 //        int[] nums2 = new int[] {1,1,2,2,2,2};
 //        int[] nums1 = new int[] {5,6,4,3,1,2};
 //        int[] nums2 = new int[] {6,3,3,1,4,5,3,4,1,3,4};
-        System.out.println(es.minOperations(nums1, nums2));
+        System.out.println(es.minOperations1(nums1, nums2));
     }
 }
