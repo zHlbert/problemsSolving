@@ -2,6 +2,10 @@ package leetcode._1780;
 
 import java.util.Arrays;
 
+/**
+ * 判断一个数字是否可以表示成三的幂的和
+ * https://leetcode.cn/problems/check-if-number-is-a-sum-of-powers-of-three/
+ */
 public class CheckIfNumberIsASumOfPowersOfThree {
     int c = 0;
     int[] pow3 = new int[20];
