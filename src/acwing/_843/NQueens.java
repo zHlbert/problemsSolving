@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * n-皇后问题
+ * https://www.acwing.com/problem/content/845/
+ */
 public class NQueens {
     static char[][] g;
 
@@ -15,11 +19,9 @@ public class NQueens {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(reader.readLine());
         g = new char[n][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
                 g[i][j] = '.';
-            }
-        }
 
         col = new boolean[n];
         dg = new boolean[2 * n];
@@ -32,9 +34,8 @@ public class NQueens {
     private static void backtrack(int r) {
         if (r == n) {
             for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
+                for (int j = 0; j < n; j++)
                     System.out.print(g[i][j]);
-                }
                 System.out.println();
             }
             System.out.println();
