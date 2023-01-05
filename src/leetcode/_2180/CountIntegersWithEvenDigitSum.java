@@ -12,9 +12,12 @@ public class CountIntegersWithEvenDigitSum {
             t /= 10;
         }
         int pre = num - digits[0];
+        // 除最后一位的个数
         int res = pre / 2 - 1;
+        // 除最后一位的位数之和
         int pdSum = 0;
         for (int i = 1; i < c; i++) pdSum += digits[i];
+        // 根据奇偶判断最后一位 从0到当前值 中 符合条件的个数
         res += (pdSum & 1) == 1 ? digits[0] + 1 >> 1 : (digits[0] >> 1) + 1;
         return res;
     }
