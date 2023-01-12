@@ -27,4 +27,21 @@ public class RearrangeCharactersToMakeTargetString {
         }
         return minTimes;
     }
+
+    public int rearrangeCharacters1(String s, String target) {
+        int[] tcnt = new int[26];
+        for (char c : target.toCharArray())
+            tcnt[c - 'a']++;
+
+        int[] scnt = new int[26];
+        for (char c : s.toCharArray())
+            scnt[c - 'a']++;
+
+        int res = 1000;
+        for (int i = 0; i < 26; i++)
+            if (tcnt[i] > 0)
+                res = Math.min(res, scnt[i] / tcnt[i]);
+
+        return res;
+    }
 }
