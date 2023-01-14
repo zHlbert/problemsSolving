@@ -7,7 +7,7 @@ package leetcode._1819;
 public class NumberOfDifferentSubsequencesGCDs {
     /**
      * https://leetcode.cn/problems/number-of-different-subsequences-gcds/solution/xu-lie-zhong-bu-tong-zui-da-gong-yue-shu-ha1j/
-     * 枚举
+     * 枚举 数学
      * @param nums
      * @return
      */
@@ -26,7 +26,7 @@ public class NumberOfDifferentSubsequencesGCDs {
                 if (occured[j]) {
                     gcd = getGCD(j, gcd);
                     if (gcd == i) {
-                        System.out.println(gcd + ", " + j);
+//                        System.out.println(gcd + ", " + j);
                         res++;
                         break;
                     }
