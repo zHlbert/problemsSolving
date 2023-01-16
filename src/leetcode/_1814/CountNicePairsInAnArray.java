@@ -12,8 +12,6 @@ public class CountNicePairsInAnArray {
      * @return
      */
     public int countNicePairs(int[] nums) {
-        int n = nums.length;
-        int[] rv = new int[n];
         Map<Integer, Integer> cnt = new HashMap<>();
         for (int num : nums) {
             int diff = num - rev(num);
@@ -33,6 +31,23 @@ public class CountNicePairsInAnArray {
             x /= 10;
         }
         return rv;
+    }
+
+    public int countNicePairs1(int[] nums) {
+        Map<Integer, Integer> cnt = new HashMap<>();
+        int res = 0;
+        for (int num : nums) {
+            int x = num, rv = 0;
+            while (x != 0) {
+                rv = rv * 10 + x % 10;
+                x /= 10;
+            }
+            // 当前 num - rv 的数目，即为包含当前num - rv 的对数
+            int cv = cnt.getOrDefault(num - rv, 0);
+            res = (res + cv) % mod;
+            cnt.put(num - rv, cv + 1);
+        }
+        return res;
     }
 
     public static void main(String[] args) {
