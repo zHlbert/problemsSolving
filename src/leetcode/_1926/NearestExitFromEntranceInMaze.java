@@ -52,9 +52,8 @@ public class NearestExitFromEntranceInMaze {
                 if (nx >= 0 && nx < m && ny >= 0 && ny < n && maze[nx][ny] == '.' && d[nx][ny] == -1) {
                     d[nx][ny] = d[pt[0]][pt[1]] + 1;
                     q.offer(new int[] {nx, ny});
-                    if (nx == 0 || nx == m - 1 || ny == 0 || ny == n - 1) {
+                    if (nx == 0 || nx == m - 1 || ny == 0 || ny == n - 1)
                         return d[nx][ny];
-                    }
                 }
             }
         }
