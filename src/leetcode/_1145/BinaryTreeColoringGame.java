@@ -24,8 +24,7 @@ public class BinaryTreeColoringGame {
 
     private TreeNode findX(TreeNode node, int x) {
         if (node == null || node.val == x) return node;
-        TreeNode res = findX(node.left, x);
-        if (res != null) return res;
-        return findX(node.right, x);
+        TreeNode left = findX(node.left, x);
+        return left != null ? left : findX(node.right, x);
     }
 }
