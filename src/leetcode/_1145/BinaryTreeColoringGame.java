@@ -19,8 +19,7 @@ public class BinaryTreeColoringGame {
     }
 
     private int count(TreeNode node) {
-        if (node == null) return 0;
-        return 1 + count(node.left) + count(node.right);
+        return node == null ? 0 : 1 + count(node.left) + count(node.right);
     }
 
     private TreeNode findX(TreeNode node, int x) {
