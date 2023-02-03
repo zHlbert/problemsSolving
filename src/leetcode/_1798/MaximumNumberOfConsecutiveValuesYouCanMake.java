@@ -10,13 +10,13 @@ public class MaximumNumberOfConsecutiveValuesYouCanMake {
      */
     public int getMaximumConsecutive(int[] coins) {
         Arrays.sort(coins);
-        int res = 0;
+        int res = 1;
         for (int coin : coins) {
-            if (coin > res + 1)
-                return res + 1;
+            if (coin > res)
+                break;
             res += coin;
         }
-        return res + 1;
+        return res;
     }
 
     public static void main(String[] args) {
