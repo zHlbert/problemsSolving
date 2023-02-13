@@ -22,10 +22,8 @@ public class ReplaceTheSubstringForBalancedString {
         char[] sc = s.toCharArray();
         n = sc.length;
         cnt = new int[26];
-        for (char c : sc) {
+        for (char c : sc)
             cnt[c - 'A']++;
-        }
-//        System.out.println(Arrays.toString(cnt));
 
         int res = n;
         for (int i = 0, j = 0; i < n; i++) {
@@ -36,9 +34,7 @@ public class ReplaceTheSubstringForBalancedString {
             if (!larger()) {
 //                System.out.println(i + ", " + j);
                 res = Math.min(res, j - i);
-                if (res == 0) {
-                    break;
-                }
+                if (res == 0) break;
             }
             cnt[sc[i] - 'A']++;
         }
