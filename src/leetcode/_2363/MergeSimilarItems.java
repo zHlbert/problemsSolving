@@ -6,8 +6,7 @@ public class MergeSimilarItems {
     public List<List<Integer>> mergeSimilarItems(int[][] items1, int[][] items2) {
         Map<Integer, Integer> weights = new HashMap<>();
         for (int[] item : items1) {
-            int weight = weights.getOrDefault(item[0], 0);
-            weights.put(item[0], weight + item[1]);
+            weights.put(item[0], item[1]);
         }
         for (int[] item : items2) {
             int weight = weights.getOrDefault(item[0], 0);
@@ -35,14 +34,9 @@ public class MergeSimilarItems {
             weights[item[0]] += item[1];
         
         List<List<Integer>> res = new ArrayList<>();
-        for (int i = 1; i <= 1000; i++) {
-            if (weights[i] != 0) {
-                List<Integer> valueWeights = new ArrayList<>();
-                valueWeights.add(i);
-                valueWeights.add(weights[i]);
-                res.add(valueWeights);
-            }
-        }
+        for (int i = 1; i <= 1000; i++)
+            if (weights[i] != 0)
+                res.add(List.of(i, weights[i]));
         return res;
     }
 }
