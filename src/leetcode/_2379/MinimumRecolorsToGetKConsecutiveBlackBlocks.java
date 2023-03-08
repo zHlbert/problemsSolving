@@ -14,7 +14,6 @@ public class MinimumRecolorsToGetKConsecutiveBlackBlocks {
                 res = Math.min(res, wCnt);
                 wCnt -= (bc[j++] == 'W' ? 1 : 0);
             }
-
         }
         return res;
     }
