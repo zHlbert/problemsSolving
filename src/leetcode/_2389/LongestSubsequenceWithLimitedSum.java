@@ -3,6 +3,12 @@ package leetcode._2389;
 import java.util.Arrays;
 
 public class LongestSubsequenceWithLimitedSum {
+    /**
+     * 二分
+     * @param nums
+     * @param queries
+     * @return
+     */
     public int[] answerQueries(int[] nums, int[] queries) {
         Arrays.sort(nums);
         int n = nums.length;
@@ -16,6 +22,7 @@ public class LongestSubsequenceWithLimitedSum {
         for (int i = 0; i < queries.length; i++) {
             int q = queries[i];
             int l = 0, r = n;
+            // 求出 小于等于 q 的最大下标
             while (l < r) {
                 int mid = l + r + 1 >> 1;
                 if (prefix[mid] <= q) {
