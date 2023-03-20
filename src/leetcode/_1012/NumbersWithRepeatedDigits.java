@@ -1,17 +1,18 @@
-package contest.leetcode20220814;
+package leetcode._1012;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-/**
- * https://leetcode.cn/problems/count-special-integers/
- */
-public class CountSpecialIntegers {
+public class NumbersWithRepeatedDigits {
     /**
-     * 数位DP
+     * 数位 DP
      * @param n
      * @return
      */
-    public int countSpecialNumbers(int n) {
+    public int numDupDigitsAtMostN(int n) {
+        int n0 = n;
         List<Integer> nums = new ArrayList<>();
         while (n != 0) {
             nums.add(n % 10);
@@ -66,13 +67,6 @@ public class CountSpecialIntegers {
         if (len == set.size()) {
             res++;
         }
-        return res;
-    }
-
-    public static void main(String[] args) {
-        CountSpecialIntegers cs = new CountSpecialIntegers();
-        System.out.println(cs.countSpecialNumbers(20));
-        System.out.println(cs.countSpecialNumbers(100));
-        System.out.println(cs.countSpecialNumbers(1000));
+        return n0 - res;
     }
 }
