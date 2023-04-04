@@ -12,13 +12,10 @@ public class NumberOfCommonFactors {
 
     public int commonFactors1(int a, int b) {
         int res = 0;
-        int g = getGcd(a, b);
-        for (int x = 1; x * x <= g; x++) {
-            if (g % x == 0) {
-                res++;
-                if (x * x != g) res++;
-            }
-        }
+        int c = getGcd(a, b);
+        for (int x = 1; x * x <= c; x++)
+            if (c % x == 0)
+                res += x * x == c ? 1 : 2;
         return res;
     }
 
