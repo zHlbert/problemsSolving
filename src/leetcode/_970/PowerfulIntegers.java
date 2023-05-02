@@ -7,8 +7,8 @@ import java.util.Set;
 
 public class PowerfulIntegers {
     public List<Integer> powerfulIntegers(int x, int y, int bound) {
-        int xc = x == 1 ? 1 : (int) Math.ceil(Math.log(bound) / Math.log(x));
-        int yc = y == 1 ? 1 : (int) Math.ceil(Math.log(bound) / Math.log(y));
+        int xc = x == 1 ? 0 : (int) Math.ceil(Math.log(bound) / Math.log(x));
+        int yc = y == 1 ? 0 : (int) Math.ceil(Math.log(bound) / Math.log(y));
         Set<Integer> set = new HashSet<>();
         int xs = 1;
         for (int i = 0; i < xc; i++) {
