@@ -18,8 +18,12 @@ public class NumberOfUnequalTripletsInArray {
     }
 
     public static void main(String[] args) {
-        String[] patterns = new String[] {"jdbc\\..+\\.password"};
-        String[] strs = new String[] {"jdbc.dev.password", "jdbc.sit1.password", "jdbc.t4.password", "jdbc.prod.password", "jdbc.xd.password", "jdbc..password", "jdbc.password", "xjdbc.t4.password"};
+        String[] patterns = new String[] {"(jdbc|redis)(\\..+)*\\.password"};
+        String pp = "(jdbc|redis)(\\..+)*\\.password";
+        String[] strs = {"jdbc.dev.password", "jdbc.sit1.password"
+                , "jdbc.t4.password", "jdbc.prod.password"
+                , "jdbc.xd.password", "jdbc..password"
+                , "jdbc.password", "xjdbc.t4.password", "redis.password", "redis.dev.password", "redis.prod.password"};
 
         Pattern r = Pattern.compile(patterns[0]);
         for (String str : strs) {
