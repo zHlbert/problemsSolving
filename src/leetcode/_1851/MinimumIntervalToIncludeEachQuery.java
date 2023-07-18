@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class MinimumIntervalToIncludeEackQuery {
+public class MinimumIntervalToIncludeEachQuery {
     /**
      * 排序 优先队列 离线算法
      * @param intervals
