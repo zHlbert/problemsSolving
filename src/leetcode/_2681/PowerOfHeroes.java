@@ -23,13 +23,12 @@ public class PowerOfHeroes {
 
     public int sumOfPower1(int[] nums) {
         Arrays.sort(nums);
-        int n = nums.length;
         long preSum = 0L, res = 0L;
         for (int num : nums) {
+            // 以num结尾的子序列最小值之和
             long dp = (preSum + num) % mod;
             preSum = (preSum + dp) % mod;
             res = (res + (long) num * num % mod * dp) % mod;
-//            if (res < 0) res += mod;
         }
         return (int) res;
     }
